@@ -1,0 +1,7 @@
+# MySQL
+msql_port: 3306
+db_name: to-api
+
+# Used for NGINX and API server config
+server_hostname: to.tmcd.me
+username: thomas

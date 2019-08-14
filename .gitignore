@@ -1,0 +1,12 @@
+# DATABASE
+**/app.db
+
+# Python
+**/__pycache__
+
+# VS Code
+**/.vscode/
+
+# Miscellaneous
+config.sh
+**/.DS_Store

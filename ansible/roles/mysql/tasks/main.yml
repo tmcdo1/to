@@ -1,0 +1,8 @@
+---
+- name: Pull the MySQL Docker image
+  docker_container:
+    name: to-mysql-server
+    image: mysql
+    pull: yes
+
+- name: Start the MySQL Server

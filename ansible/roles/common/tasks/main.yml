@@ -1,0 +1,12 @@
+---
+- name: Install Python, Node.js and tools
+  apt: name={{ item }} state=latest update_cache=yes
+  loop: [ 'python3-pip', 'virtualenv', 'python3-setuptools', 'nodejs', 'npm' ]
+
+- name: Install Vue CLI
+  npm:
+    name: "@vue/cli"
+    global: yes
+    state: latest
+
+# Configure firewall?

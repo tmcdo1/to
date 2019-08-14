@@ -1,0 +1,12 @@
+---
+- name: Install NGINX
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Copy NGINX configuration for the site
+  template:
+    src: default.conf
+    dest: /etc/nginx/conf.d/default.conf
+  notify: restart nginx

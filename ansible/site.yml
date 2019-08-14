@@ -1,0 +1,14 @@
+---
+- name: Install TO frontend, API, and configure NGINX
+  hosts: all
+  remote_user: root
+  # become: yes
+  # become_method: sudo
+
+  roles:
+    - common
+    - docker
+    - nginx
+    - mysql
+    - to-api
+    - to-frontend
