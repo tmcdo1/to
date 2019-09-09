@@ -1,0 +1,15 @@
+---
+- name: Install dependencies
+  pip:
+    requirements: /home/{{ username }}/to/to-server-api/requirements.txt
+
+- name: Copy service config for the API
+  template:
+    src: to-server-api.service
+    dest: /home/{{ username }}/to/to-server-api/to-server-api.service
+
+- name: start WSGI server
+  service:
+    name: /home/{{ username }}/to/to-server-api/to-server-api.service
+    enabled: yes
+    state: started

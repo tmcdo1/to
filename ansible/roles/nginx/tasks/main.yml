@@ -5,8 +5,18 @@
     state: present
     update_cache: yes
 
+# - name: backup default configuration
+#   copy:
+#     src:
+#     dest:
+
 - name: Copy NGINX configuration for the site
   template:
     src: default.conf
     dest: /etc/nginx/conf.d/default.conf
   notify: restart nginx
+
+- name: Configure firewall
+  ufw:
+    rule: allow
+    name: "Nginx Full"

@@ -25,7 +25,12 @@ def create_alias():
         new_alias = models.Alias(alias=req_data['alias'], target=req_data['target'])
         db.session.add(new_alias)
         db.session.commit()
-    except:
+        res_data = {
+            'message': 'alias created'
+        }
+        return make_response(jsonify(res_data), 200)
+    except Exception as e:
+        print(e)
         res_data = {
             'message': 'Error creating alias'
         }
@@ -53,7 +58,9 @@ def search_alias():
     # TODO: Use elasticsearch for getting best matches
     query = request.args.get('query')
     aliases = models.Alias.query.filter(models.Alias.alias.contains(query)).limit(10).all()
+    aliases = list(map(lambda alias_obj: {'alias': alias_obj.alias, 'target': alias_obj.target}, aliases))
     res_data = {
         'aliases': aliases
     }
+    print('ALIASES', aliases)
     return make_response(jsonify(res_data), 200)

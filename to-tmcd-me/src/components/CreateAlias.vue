@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 function formAliasIsValid () {
   let tempElem = document.getElementById('target-alias')
   if (tempElem == null) return true
@@ -39,7 +41,6 @@ function closeDialog () {
 }
 
 function onSubmit () {
-  // TODO: Add logic to send to backend
   let valid = true
   if (!formAliasIsValid()) {
     this.validAlias = false
@@ -56,6 +57,14 @@ function onSubmit () {
   }
 
   if (valid) {
+    let data = {
+      alias: this.form.alias,
+      target: this.form.target
+    }
+    // console.log('URL:', `${process.env.VUE_APP_API_LOC}/create-alias}`, 'DATA', data)
+    axios.post(`${process.env.VUE_APP_API_LOC}/create-alias`, data)
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
     this.form.alias = ''
     this.form.target = ''
     this.validUrl = true

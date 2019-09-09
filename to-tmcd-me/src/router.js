@@ -24,7 +24,8 @@ export default new Router({
     {
       path: '/to/:alias',
       name: 'to',
-      component: () => import(/* webpackChunkName: "redirect" */ './views/RedirectAlias.vue')
+      component: () => import(/* webpackChunkName: "redirect" */ './views/RedirectAlias.vue'),
+      props: true
     },
     {
       path: '/getting-started',

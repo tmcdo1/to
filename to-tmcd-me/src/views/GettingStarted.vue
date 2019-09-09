@@ -8,7 +8,7 @@
         With the extension, you can use <code>to/&lt;alias&gt;</code> in your browser search bar.
       </p>
       <p>
-        If you decide to not use the extension, you can still use the service by typing <code>{{ window.location.host }}/&lt;alias&gt;</code>
+        If you decide to not use the extension, you can still use the service by typing <code>{{ window.location.host }}/to/&lt;alias&gt;</code>
         in the browser search bar.
       </p>
     </section>

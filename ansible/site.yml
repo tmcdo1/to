@@ -8,7 +8,7 @@
   roles:
     - common
     - docker
-    - nginx
     - mysql
     - to-api
     - to-frontend
+    - nginx

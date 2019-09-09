@@ -1,6 +1,10 @@
 # MySQL
 msql_port: 3306
 db_name: to-api
+db_volume_loc: /data/databases/mysql
+db_root_pass: Lj8h3aJn3kj4hln23l4kn4wnHd8
+db_user_name: thomasmcd
+db_user_pass: 8s(8sh@kj4-sA72K4$b
 
 # Used for NGINX and API server config
 server_hostname: to.tmcd.me

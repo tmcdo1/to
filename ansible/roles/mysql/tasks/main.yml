@@ -1,8 +1,21 @@
 ---
-- name: Pull the MySQL Docker image
+- name: Create directory for MySQL volume storage
+  file:
+    path: "{{ db_volume_loc }}"
+    state: directory
+
+- name: Start MySQL server
   docker_container:
     name: to-mysql-server
     image: mysql
-    pull: yes
-
-- name: Start the MySQL Server
+    env:
+      MYSQL_DATABASE: "{{ db_name }}"
+      MYSQL_ROOT_PASSWORD: "{{ db_root_pass }}"
+      MYSQL_USER: "{{ db_user_name }}"
+      MYSQL_PASSWORD: "{{ db_user_pass }}"
+    ports:
+      - "{{ msql_port }}:{{ msql_port }}"
+    volumes: 
+      - "{{ db_volume_loc }}:/var/lib/mysql"
+    detach: "yes"
+    restart_policy: on-failure
