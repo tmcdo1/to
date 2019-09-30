@@ -1,2 +1,10 @@
 ---
-- name: 
+- name: Install packages based on package.json
+  npm:
+    path: "/home/{{ username }}/to/to-tmcd-me"
+  ignore_errors: True
+
+- name: build application
+  shell: npm run build
+  args:
+    chdir: "/home/{{ username }}/to/to-tmcd-me"

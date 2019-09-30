@@ -6,7 +6,7 @@ function navigateListener(details) {
     if(url_protocol_stripped.startsWith('to/')) {
         let pathStart = url_protocol_stripped.indexOf('/')
         let path = url_protocol_stripped.substr(pathStart)
-        browser.tabs.update(details.tabId, { url: `http://to.tmcd.me${path}` })
+        browser.tabs.update(details.tabId, { url: `http://to.tmcd.me/to${path}` })
     }
 }
 

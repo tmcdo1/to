@@ -5,16 +5,27 @@
     state: present
     update_cache: yes
 
-# - name: backup default configuration
-#   copy:
-#     src:
-#     dest:
-
 - name: Copy NGINX configuration for the site
   template:
     src: default.conf
-    dest: /etc/nginx/conf.d/default.conf
+    dest: /etc/nginx/sites-available/to.tmcd.me
   notify: restart nginx
+
+- name: Copy main nginx conf
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+  notify: restart nginx
+
+- name: Create symbolic link 
+  file:
+    src: "/etc/nginx/sites-available/to.tmcd.me"
+    dest: "/etc/nginx/sites-enabled/to.tmcd.me"
+    state: link
+
+# - name: remove default nginx
+#   shell: unlink "/etc/nginx/sites-enabled/default"
+#   ignore_errors: True
 
 - name: Configure firewall
   ufw:

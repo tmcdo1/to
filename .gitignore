@@ -11,3 +11,6 @@
 # Miscellaneous
 config.sh
 **/.DS_Store
+
+# Vue
+**/dist/

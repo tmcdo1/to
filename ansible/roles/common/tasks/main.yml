@@ -1,7 +1,7 @@
 ---
 - name: Install Python, Node.js and tools
   apt: name={{ item }} state=latest update_cache=yes
-  loop: [ 'python3-pip', 'virtualenv', 'python3-setuptools', 'python3-dev', 'build-essential', 'libssl-dev', 'nodejs', 'npm' ]
+  loop: [ 'python3-pip', 'python-pip', 'virtualenv', 'python3-setuptools', 'python3-dev', 'build-essential', 'libssl-dev', 'nodejs', 'npm' ]
 
 - name: Install Vue CLI
   npm:
@@ -9,14 +9,27 @@
     global: yes
     state: latest
 
-- name: Create directory for MySQL volume storage
+# - name: Install Vue CLI service
+#   npm:
+#     name: "@vue/cli-service"
+#     global: yes
+#     state: latest
+
+- name: Create directory for app
   file:
     path: "/home/{{ username }}/to"
     state: directory
 
-- name: copy project over to server
+- name: copy api over to server
   copy:
-    src: "{{ inventory_dir | dirname }}"
-    dest: /home/{{ username }}/to/
+    src: "{{ inventory_dir | dirname }}/to-server-api/"
+    dest: "/home/{{ username }}/to/to-server-api/"
+    owner: "{{ username }}"
+    group: www-data
+
+- name: copy frontend over to server
+  copy:
+    src: "{{ inventory_dir | dirname }}/to-tmcd-me/"
+    dest: "/home/{{ username }}/to/to-tmcd-me/"
     owner: "{{ username }}"
     group: www-data

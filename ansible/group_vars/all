@@ -9,3 +9,7 @@ db_user_pass: 8s(8sh@kj4-sA72K4$b
 # Used for NGINX and API server config
 server_hostname: to.tmcd.me
 username: thomas
+
+# Docker API 
+api_image_name: tmcd-to-api
+api_port: 5000

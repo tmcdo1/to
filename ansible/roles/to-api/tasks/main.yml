@@ -1,15 +1,42 @@
 ---
-- name: Install dependencies
+# - name: Install dependencies
+#   pip:
+#     requirements: /home/{{ username }}/to/to-server-api/requirements.txt
+
+# - name: Copy service config for the API
+#   template:
+#     src: to-server-api.service
+#     dest: /home/{{ username }}/to/to-server-api/to-server-api.service
+
+# - name: start WSGI server
+#   service:
+#     name: /home/{{ username }}/to/to-server-api/to-server-api.service
+#     enabled: yes
+#     state: started
+
+- name: Install requirements
   pip:
-    requirements: /home/{{ username }}/to/to-server-api/requirements.txt
+    requirements: "/home/{{ username }}/to/to-server-api/requirements.txt"
+    executable: pip3
 
-- name: Copy service config for the API
-  template:
-    src: to-server-api.service
-    dest: /home/{{ username }}/to/to-server-api/to-server-api.service
+- name: Migrate DB
+  shell: flask db upgrade
+  args:
+    chdir: /home/{{ username }}/to/to-server-api
 
-- name: start WSGI server
-  service:
-    name: /home/{{ username }}/to/to-server-api/to-server-api.service
-    enabled: yes
-    state: started
+- name: build docker container
+  docker_image:
+    build:
+      path: /home/{{ username }}/to/to-server-api/
+    name: "{{ api_image_name }}"
+    source: build
+
+- name: run docker container
+  docker_container:
+    name: to-api
+    image: "{{ api_image_name }}"
+    ports:
+      - "{{ api_port }}:{{ api_port }}"
+    env:
+      PORT: "{{ api_port | to_json }}"
+    restart_policy: on-failure

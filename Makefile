@@ -1,8 +1,12 @@
 # Ansible Deploy
 deploy:
-	ssh-agent bash
-	ssh-add ~/.ssh/id_rsa
-	ansible -i ansible/hosts ansible/site.yml
+	rm -rf to-tmcd-me/node_modules
+	rm -rf to-tmcd-me/dist
+	rm -rf to-server-api/env
+	# cd ./to-tmcd-me && npm install && npm run build
+	ansible-playbook -i ansible/hosts -v ansible/site.yml
+	# ssh-agent bash
+	# ssh-add ~/.ssh/id_rsa
 
 # Build frontend
 
