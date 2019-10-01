@@ -1,5 +1,5 @@
 <template>
-  <div>Redirecting to {{ alias }}</div>
+  <div align='center'>Redirecting to {{ alias }}</div>
 </template>
 
 <script>

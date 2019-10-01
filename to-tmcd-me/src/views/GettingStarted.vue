@@ -6,6 +6,7 @@
       <p>
         It is highly recommended to get the To Alias browser extension.
         With the extension, you can use <code>to/&lt;alias&gt;</code> in your browser search bar.
+        The extension can be found for <a href='https://addons.mozilla.org/en-US/firefox/addon/to-alias/'>Firefox</a>. Other browsers coming soon.
       </p>
       <p>
         If you decide to not use the extension, you can still use the service by typing <code>{{ window.location.host }}/to/&lt;alias&gt;</code>

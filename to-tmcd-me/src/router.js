@@ -28,9 +28,18 @@ export default new Router({
       props: true
     },
     {
+      path: '/to',
+      redirect: { name: 'home' }
+    },
+    {
       path: '/getting-started',
       name: 'getting-started',
       component: () => import(/* webpackChunkName: "gettingStarted" */ './views/GettingStarted.vue')
+    },
+    {
+      path: '*',
+      name: '404',
+      component: () => import(/* webpackChunkName: "404" */ './views/404.vue')
     }
   ]
 })
